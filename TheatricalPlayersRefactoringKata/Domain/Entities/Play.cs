@@ -2,21 +2,14 @@ using System;
 
 namespace TheatricalPlayersRefactoringKata;
 
-public class Play
+public class Play(string title, int lineCount, string genre)
 {
-    public string Title { get; }
-    public string Genre { get; }
-    public int LineCount { get; }
+    static int minPlayLines = 1000;
+    static int maxPlayLines = 4000;
 
-    public Play(string title, int lineCount, string genre)
-    {
-        Title = title;
-        LineCount = Math.Clamp(lineCount, 1000, 4000);
-        Genre = genre;
-    }
+    public string Title { get; set; } = title;
+    public int LineCount { get; set; } = Math.Clamp(lineCount, minPlayLines, maxPlayLines);
+    public string Genre { get; set; } = genre;
 
-    public double GetBasePrice()
-    {
-        return LineCount / 10.0;
-    }
+    public double GetBasePrice() => LineCount / 10.0;
 }

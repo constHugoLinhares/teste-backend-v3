@@ -2,14 +2,8 @@ using System;
 
 namespace TheatricalPlayersRefactoringKata;
 
-public class Performance
+public class Performance(Play play, int audience)
 {
-    public Play Play { get; }
-    public int Audience { get; }
-
-    public Performance(Play play, int audience)
-    {
-        Play = play ?? throw new ArgumentNullException(nameof(play));
-        Audience = audience;
-    }
+    public Play Play { get; set; } = play ?? throw new ArgumentNullException(nameof(play));
+    public int Audience { get; set; } = audience;
 }
