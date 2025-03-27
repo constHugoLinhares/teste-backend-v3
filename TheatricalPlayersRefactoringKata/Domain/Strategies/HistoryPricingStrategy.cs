@@ -4,6 +4,7 @@ namespace TheatricalPlayersRefactoringKata;
 
 public class HistoryPricingStrategy : IPlayPricingStrategy, ICreditsStrategy
 {
+    private static readonly int ExtraCreditsThreshold = 30;
     private readonly TragedyPricingStrategy _tragedy = new();
     private readonly ComedyPricingStrategy _comedy = new();
 
@@ -16,6 +17,6 @@ public class HistoryPricingStrategy : IPlayPricingStrategy, ICreditsStrategy
 
     public int CalculateCredits(Performance performance)
     {
-        return performance.Audience > 30 ? performance.Audience - 30 : 0;
+        return performance.Audience > ExtraCreditsThreshold ? performance.Audience - ExtraCreditsThreshold : 0;
     }
 }
