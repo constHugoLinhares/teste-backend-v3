@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Globalization;
+using System.Text;
 
 namespace TheatricalPlayersRefactoringKata;
 
@@ -10,8 +9,10 @@ public class StatementPrinter
     {
         double totalAmount = 0;
         int volumeCredits = 0;
-        var result = $"Statement for {invoice.Customer}\n";
+        var result = new StringBuilder();
+
         CultureInfo cultureInfo = new CultureInfo("en-US");
+        result.AppendLine($"Statement for {invoice.Customer}");
 
         foreach (var performance in invoice.Performances)
         {
@@ -26,12 +27,12 @@ public class StatementPrinter
                 volumeCredits += creditsStrategy.CalculateCredits(performance);
             }
 
-            result += String.Format(cultureInfo, $"  {play.Title}: {playPrice:C} ({performance.Audience} seats)\n");
+            result.AppendLine(cultureInfo, $"  {play.Title}: {playPrice:C} ({performance.Audience} seats)");
         }
 
-        result += String.Format($"Amount owed is {totalAmount:C}\n");
-        result += String.Format($"You earned {volumeCredits} credits\n");
+        result.AppendLine($"Amount owed is {totalAmount:C}");
+        result.AppendLine($"You earned {volumeCredits} credits");
 
-        return result;
+        return result.ToString();
     }
 }
