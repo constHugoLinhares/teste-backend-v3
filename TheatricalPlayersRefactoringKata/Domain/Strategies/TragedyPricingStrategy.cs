@@ -2,13 +2,17 @@ namespace TheatricalPlayersRefactoringKata;
 
 public class TragedyPricingStrategy : IPlayPricingStrategy, ICreditsStrategy
 {
+    private static readonly int ExtraCreditsThreshold = 30;
+    private static readonly int BonusAudienceThreshold = 30;
+    private static readonly double BonusPerPerson = 10.0;
+
     public double CalculatePrice(Play play, Performance performance)
     {
         double basePrice = play.GetBasePrice();
 
-        if (performance.Audience > 30)
+        if (performance.Audience > BonusAudienceThreshold)
         {
-            basePrice += (performance.Audience - 30) * 10.0;
+            basePrice += (performance.Audience - BonusAudienceThreshold) * BonusPerPerson;
         }
 
         return basePrice;
@@ -16,6 +20,6 @@ public class TragedyPricingStrategy : IPlayPricingStrategy, ICreditsStrategy
 
     public int CalculateCredits(Performance performance)
     {
-        return performance.Audience > 30 ? performance.Audience - 30 : 0;
+        return performance.Audience > ExtraCreditsThreshold ? performance.Audience - ExtraCreditsThreshold : 0;
     }
 }
