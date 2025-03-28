@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using ApprovalTests;
 using ApprovalTests.Reporters;
@@ -9,9 +8,12 @@ namespace TheatricalPlayersRefactoringKata.Tests
     [UseReporter(typeof(DiffReporter))]
     public class StatementPrinterTests
     {
+        public readonly StatementPrinter statementPrinter = new();
+
         [Fact]
         public void TestStatementExampleLegacy()
         {
+
             var plays = new Dictionary<string, Play>
             {
                 { "hamlet", new Play("Hamlet", 4024, "tragedy") },
@@ -19,17 +21,15 @@ namespace TheatricalPlayersRefactoringKata.Tests
                 { "othello", new Play("Othello", 3560, "tragedy") }
             };
 
-            Invoice invoice = new Invoice(
+            Invoice invoice = new(
                 "BigCo",
                 new List<Performance>
                 {
-                    new Performance(plays["hamlet"], 55),
-                    new Performance(plays["as-like"], 35),
-                    new Performance(plays["othello"], 40)
+                    new(plays["hamlet"], 55),
+                    new(plays["as-like"], 35),
+                    new(plays["othello"], 40)
                 }
             );
-
-            StatementPrinter statementPrinter = new StatementPrinter();
 
             var result = statementPrinter.Print(invoice);
 
@@ -61,8 +61,6 @@ namespace TheatricalPlayersRefactoringKata.Tests
                     new Performance(plays["henry-v"], 20)
                 }
             );
-
-            StatementPrinter statementPrinter = new StatementPrinter();
 
             var result = statementPrinter.Print(invoice);
 
