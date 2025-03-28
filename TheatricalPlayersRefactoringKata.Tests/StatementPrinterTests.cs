@@ -4,13 +4,15 @@ using ApprovalTests.Reporters;
 using Xunit;
 using TheatricalPlayersRefactoringKata.Domain.Entities;
 using TheatricalPlayersRefactoringKata.Application.Services;
+using TheatricalPlayersRefactoringKata.Application.Formatters;
 
 namespace TheatricalPlayersRefactoringKata.Tests
 {
     [UseReporter(typeof(DiffReporter))]
     public class StatementPrinterTests
     {
-        public readonly StatementPrinter statementPrinter = new();
+        public readonly TextStatementFormatter textStatementFormatter = new();
+        public readonly XmlStatementFormatter xmlStatementFormatter = new();
 
         [Fact]
         public void TestStatementExampleLegacy()
@@ -33,7 +35,8 @@ namespace TheatricalPlayersRefactoringKata.Tests
                 }
             );
 
-            var result = statementPrinter.Print(invoice);
+            var printer = new StatementPrinter(textStatementFormatter);
+            var result = printer.Print(invoice);
 
             Approvals.Verify(result);
         }
@@ -64,7 +67,8 @@ namespace TheatricalPlayersRefactoringKata.Tests
                 }
             );
 
-            var result = statementPrinter.Print(invoice);
+            var printer = new StatementPrinter(textStatementFormatter);
+            var result = printer.Print(invoice);
 
             Approvals.Verify(result);
         }
@@ -96,9 +100,10 @@ namespace TheatricalPlayersRefactoringKata.Tests
                 }
             );
 
-            var result = statementPrinter.GenerateXml(invoice);
+            var printer = new StatementPrinter(xmlStatementFormatter);
+            var xml = printer.Print(invoice);
 
-            Approvals.Verify(result);
+            Approvals.Verify(xml);
         }
     }
 }
