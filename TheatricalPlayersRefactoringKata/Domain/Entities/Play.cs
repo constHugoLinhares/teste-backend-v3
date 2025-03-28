@@ -1,7 +1,6 @@
 using System;
 
-namespace TheatricalPlayersRefactoringKata;
-
+namespace TheatricalPlayersRefactoringKata.Domain.Entities;
 public class Play(string title, int lineCount, string genre)
 {
     static int minPlayLines = 1000;

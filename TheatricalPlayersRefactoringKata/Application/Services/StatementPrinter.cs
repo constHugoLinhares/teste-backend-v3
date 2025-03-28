@@ -3,9 +3,11 @@ using System.Text;
 using System.Xml.Linq;
 using System.Collections.Generic;
 using System;
+using TheatricalPlayersRefactoringKata.Domain.Entities;
+using TheatricalPlayersRefactoringKata.Domain.Factories;
+using TheatricalPlayersRefactoringKata.Domain.Interfaces;
 
-namespace TheatricalPlayersRefactoringKata;
-
+namespace TheatricalPlayersRefactoringKata.Application.Services;
 public class StatementPrinter
 {
     public string Print(Invoice invoice)

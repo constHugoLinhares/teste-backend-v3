@@ -1,5 +1,5 @@
-using System;
-
+using TheatricalPlayersRefactoringKata.Domain.Entities;
+using TheatricalPlayersRefactoringKata.Domain.Interfaces;
 namespace TheatricalPlayersRefactoringKata;
 
 public class HistoryPricingStrategy : IPlayPricingStrategy, ICreditsStrategy

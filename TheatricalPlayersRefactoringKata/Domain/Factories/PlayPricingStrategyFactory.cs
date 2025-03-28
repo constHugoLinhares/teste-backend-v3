@@ -1,6 +1,7 @@
 using System;
+using TheatricalPlayersRefactoringKata.Domain.Interfaces;
 
-namespace TheatricalPlayersRefactoringKata;
+namespace TheatricalPlayersRefactoringKata.Domain.Factories;
 
 public class PlayPricingStrategyFactory
 {

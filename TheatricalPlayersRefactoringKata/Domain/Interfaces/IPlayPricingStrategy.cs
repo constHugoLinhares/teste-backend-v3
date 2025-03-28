@@ -1,4 +1,5 @@
-namespace TheatricalPlayersRefactoringKata;
+using TheatricalPlayersRefactoringKata.Domain.Entities;
+namespace TheatricalPlayersRefactoringKata.Domain.Interfaces;
 
 public interface IPlayPricingStrategy
 {
